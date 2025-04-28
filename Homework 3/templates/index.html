@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Acme Financial Corp - Loan Application Portal</title>
+    <style>
+        .section {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .note {
+            margin: 10px 0;
+            padding: 10px;
+            border-left: 4px solid #ccc;
+            background-color: #f9f9f9;
+        }
+        .note.system { border-left-color: #2196F3; }
+        .note.status_change { border-left-color: #4CAF50; }
+        .note.processing { border-left-color: #FFC107; }
+        .note.rejection { border-left-color: #F44336; }
+        .note.acceptance { border-left-color: #4CAF50; }
+        .timestamp {
+            color: #666;
+            font-size: 0.8em;
+        }
+        .phase-task {
+            font-weight: bold;
+            color: #333;
+        }
+        select, input, textarea {
+            margin: 5px;
+            padding: 8px;
+            width: 200px;
+        }
+        button {
+            margin: 5px;
+            padding: 8px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Acme Financial Corp - Loan Application Portal</h1>
+	
+	<div class="section" id="submitApplication">
+        <h2>Submit New Application</h2>
+        <input type="text" id="applicantName" placeholder="Full Name">
+        <input type="text" id="address" placeholder="Full Address">
+        <button onclick="submitApplication()">Submit Application</button>
+        <div id="submissionResult"></div>
+    </div>
+
+    <div class="section" id="checkStatus">
+        <h2>Check Application Status</h2>
+        <input type="text" id="checkApplicationNumber" placeholder="Application Number">
+        <button onclick="checkStatus()">Check Status</button>
+        <div id="statusResult"></div>
+        <div id="notesResult"></div>
+    </div>
+
+    <div class="section" id="updateStatus">
+        <h2>Update Application Status</h2>
+        <input type="text" id="updateApplicationNumber" placeholder="Application Number">
+        <select id="newStatus">
+            <option value="received">Received</option>
+            <option value="processing">Processing</option>
+            <option value="accepted">Accepted</option>
+            <option value="rejected">Rejected</option>
+        </select>
+        <select id="processingPhase">
+            <option value="">Select Phase (Optional)</option>
+            <option value="personal_details">Personal Details</option>
+            <option value="credit_checking">Credit Checking</option>
+            <option value="certification">Certification</option>
+        </select>
+        <select id="processingTask">
+            <option value="">Select Task (Optional)</option>
+        </select>
+        <textarea id="statusNote" placeholder="Add a note about the status change"></textarea>
+        <button onclick="updateStatus()">Update Status</button>
+        <div id="updateResult"></div>
+    </div>
+
+    <div class="section" id="addNote">
+        <h2>Add Note to Application</h2>
+        <input type="text" id="noteApplicationNumber" placeholder="Application Number">
+        <select id="noteType">
+            <option value="processing">Processing Note</option>
+            <option value="rejection">Rejection Note</option>
+            <option value="acceptance">Acceptance Note</option>
+            <option value="general">General Note</option>
+        </select>
+        <select id="notePhase">
+            <option value="">Select Phase (Optional)</option>
+            <option value="personal_details">Personal Details</option>
+            <option value="credit_checking">Credit Checking</option>
+            <option value="certification">Certification</option>
+        </select>
+        <select id="noteTask">
+            <option value="">Select Task (Optional)</option>
+        </select>
+        <textarea id="noteContent" placeholder="Note content"></textarea>
+        <button onclick="addNote()">Add Note</button>
+        <div id="noteResult"></div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>
